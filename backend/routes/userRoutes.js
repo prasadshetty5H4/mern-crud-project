@@ -1,0 +1,10 @@
+const express = require('express')
+const { getUsers, createUser, updateUser, deleteUser } = require('../controllers/userController')
+const multer = require('multer')
+const upload = multer({ dest: 'uploads/' })
+const router = express.Router()
+router.get('/', getUsers)
+router.post('/', upload.single('photo'), createUser)
+router.put('/:id', upload.single('photo'), updateUser)
+router.delete('/:id', deleteUser)
+module.exports = router
